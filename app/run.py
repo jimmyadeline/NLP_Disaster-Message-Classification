@@ -15,6 +15,7 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
+    text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -39,9 +40,19 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
+    
+    #Genre
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    
+    #top 10 categories
+    category_counts= df.drop(['id','message','original','genre'], axis=1).sum().sort_values(ascending=False)
+    category_names= list(category_counts.index)[0:10]
+    
+    #direct categories
+    direct = df[df['genre'] == 'direct']   
+    direct_counts = direct.drop(['id','message','original','genre'], axis=1).sum().sort_values(ascending=False)
+    direct_cat = list(direct_counts.index)[0:10]
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -61,6 +72,42 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=category_names,
+                    y=category_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of top 10 Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=direct_cat,
+                    y=direct_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Direct Message - Distribution of top 10 Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "category"
                 }
             }
         }
