@@ -10,11 +10,11 @@ Run the following commands in the project's root directory to set up database an
 
 ### Running the Web App from the Project Workspace IDE
 Type in the command line: 
-      `python run.py
+    `python run.py`
 
 Open another Terminal Window, Type:
-       env|grep WORK
+    `env|grep WORK`
        
 In a new web browser window, type in the following:
-       https://SPACEID-3001.SPACEDOMAIN
+    `https://SPACEID-3001.SPACEDOMAIN`
 
