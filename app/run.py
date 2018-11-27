@@ -2,6 +2,9 @@ import json
 import plotly
 import pandas as pd
 
+import re
+import nltk
+nltk.download(['punkt', 'wordnet', 'stopwords'])
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
@@ -11,6 +14,8 @@ from plotly.graph_objs import Bar
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
+import random
+from collections import Counter
 
 app = Flask(__name__)
 
