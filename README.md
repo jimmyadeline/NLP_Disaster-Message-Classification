@@ -1,4 +1,14 @@
 # Disaster Response Pipeline
+### Build Pipelines to Classify Messages with Figure Eight
+
+This project builds a data pipeline to prepare message data from major natural disasters around the world. I build an Adaboost pipeline to categorize emergency messages based on the needs communicated by the sender.
+
+### Main Steps:
+ - Clean data by Natural Language Processing (Normalized, tokenized and lemmatized the text messages);
+ - Built up pipelines to train Adaboost and Random forest with grid search; Applied TF-IDF to assign the weights to words in the message;
+ - Use website to test results. 
+ 
+Data Source: Figure Eight, a company focused on creating datasets for AI applications, has crowdsourced the tagging and translation of messages to improve disaster relief efforts. 
 
 ### Instructions:
 Run the following commands in the project's root directory to set up database and model.
