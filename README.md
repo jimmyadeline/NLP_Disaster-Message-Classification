@@ -6,7 +6,7 @@ This project builds a data pipeline to prepare message data from major natural d
 #### Main Steps:
  - Clean data by Natural Language Processing (Normalized, tokenized and lemmatized the text messages);
  - Built up pipelines to train Adaboost and Random forest with grid search; Applied TF-IDF to assign the weights to words in the message;
- - Use website to test results. 
+ - Use Adaboost in the final model and test results in the website. 
  
 Data Source: Figure Eight, San Francisco, CA
 
