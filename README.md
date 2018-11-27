@@ -9,12 +9,13 @@ Run the following commands in the project's root directory to set up database an
     `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
 ### Running the Web App from the Project Workspace IDE
-Type in the command line: 
+Step 1: Type in the command line: 
     `python run.py`
 
-Open another Terminal Window, Type:
+Step 2: Open another Terminal Window, Type:
     `env|grep WORK`
        
-In a new web browser window, type in the following:
+Step 3: In a new web browser window, type in the following:
     `https://SPACEID-3001.SPACEDOMAIN`
+where SPACEID & SPACEDOMAIN are shown in step 2.
 
