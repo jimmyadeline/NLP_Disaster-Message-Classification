@@ -1,13 +1,7 @@
 import json
 import plotly
 import pandas as pd
-
-import re
-import nltk
-nltk.download(['punkt', 'wordnet', 'stopwords'])
-from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
-
+from tokenizer_util import tokenize
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
@@ -19,24 +13,18 @@ from collections import Counter
 
 app = Flask(__name__)
 
-def tokenize(text):
-    text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
 
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+@app.before_first_request
+def load_model_data():
+    global df
+    global model
+    # load data
+    engine = create_engine('sqlite:///data/DisasterResponse.db')
+    df = pd.read_sql_table('DisasterResponse', engine)
 
-    return clean_tokens
+    # load model
+    model = joblib.load("models/classifier.pkl")
 
-# load data
-engine = create_engine('sqlite:///data/DisasterResponse.db')
-df = pd.read_sql_table('DisasterResponse', engine)
-
-# load model
-model = joblib.load("models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
