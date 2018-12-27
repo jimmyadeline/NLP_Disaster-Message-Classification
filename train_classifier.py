@@ -48,7 +48,6 @@ def build_model():
         'tfidf__smooth_idf': [True, False]
     }
     model  = GridSearchCV(pipeline, param_grid = parameters, cv=2) 
-    model = pipeline
     return model  
 
 def evaluate_model(model, X_test, Y_test, category_names):
